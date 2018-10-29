@@ -1,0 +1,682 @@
+
+<!-- saved from url=(0065)http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>Journal of Statistics Education, v16n3: Shonda Kuiper</title><!--insert v & n: author--> 
+<!--<base href="http://ww2.amstat.org/publications/jse/">--><base href=".">
+
+</head><body bgcolor="white" text="#000000" link="blue" vlink="blue" alink="blue" cz-shortcut-listen="true">  
+<table width="100%"> 
+<tbody><tr> <td align="right" valign="top"> <a href="http://ww2.amstat.org/publications/jse"><font color="blue">
+     <img src="./Journal of Statistics Education, v16n3_ Shonda Kuiper_files/jse_logo_2001_still.gif" border="0"></font></a> </td> </tr> 
+</tbody></table>
+
+<h1>Introduction to Multiple Regression: How Much Is Your Car Worth?<!--insert title here--></h1> 
+
+<p>Shonda Kuiper<!--name of authors--> <br> Grinnell College<!--institution of authors--> 
+
+</p><p><cite>Journal of Statistics Education</cite> Volume 16, Number 3 (2008), <!--edit v and n-->ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html</p><!--change link--> 
+
+<p>Copyright © 2008 by Shonda Kuiper<!--change name--> all rights reserved. This text may be freely shared among individuals, but it may not be republished in any medium without express written consent from the author and advance notification of the editor. </p> 
+
+<p></p><hr><p></p> 
+
+<p></p> 
+
+<p><b>Key Words:</b> Multiple Regression; Dummy Variables; Heteroskedasticity; Data Transformation; Residuals. <!--insert the key words--></p> 
+
+<a name="Abstract"></a> 
+
+<h2>Abstract</h2>
+
+<p>Data collected from Kelly Blue Book for several hundred 2005 used General Motors (GM) cars allows students to develop a multivariate regression model to determine car values based on a variety of characteristics such as mileage,
+make, model, engine size, interior style, and cruise control. Students learn to look at residual plots to check for heteroskedasticity, normality, autocorrelation, and multicollinearity as well as explore techniques for
+variable selection and develop specially constructed variables.</p>
+
+<h2>1. Introduction</h2>
+
+<p>This paper discusses the development of a multivariate regression model to predict the retail price of 2005 General
+Motor (GM) cars. Statistical textbooks typically offer many small data sets chosen to illustrate a variety of issues
+and techniques that a user of regression should know. Although small data sets can offer the advantage of sharp focus on particular issues, their narrow focus carries disadvantages as well. Working with a large, richly structured data set can give students a kind of experience not possible with a succession of smaller data sets. Accordingly, many courses use projects to ensure that
+students experience the challenge of model building and the opportunity to synthesize the elements of regression learned one at a time from smaller data sets. However, students can often have difficulty adjusting from traditional homework to a true research project that requires transitioning from a research question to a statistical model, properly collecting and cleaning data,
+appropriate model building and assessment, as well as effectively communicating their results. The structure of this data set allows students to work through the entire process of model building and assessment, thus providing a guided
+practice run before tackling a large data set on their own. This bridges the gap between short, focused homework problems and the open-ended nature of a project. </p>
+
+<p>This data set was created in order to provide a rich interdisciplinary example that serves as a guide through the
+complete process of a multiple regression analysis project. The price of cars is an example of general interest to students and does not require specialized knowledge. This context is common enough that it may also aid many students in their conceptual understanding of the substantive issues related to regression.</p>
+
+<p>For this data set, a representative sample of over eight hundred 2005 GM cars were selected, then retail price was
+calculated from the tables provided in the 2005 Central Edition of the Kelly Blue Book (see Section 11). Students are provided with a data set containing the following variables:</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Price: suggested retail price of the used 2005 GM car in
+excellent condition. The condition of a car can greatly affect price. All cars
+in this data set were less than one year old when priced and considered to be
+in excellent condition. </p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Mileage: number of miles the car has been driven</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Make: manufacturer of the car such as Saturn, Pontiac, and
+Chevrolet</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Model: specific models for each car manufacturer such as Ion,
+Vibe, Cavalier</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Trim (of car): specific type of car model such as SE Sedan 4D, Quad Coupe 2D&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Type: body type such as sedan, coupe, etc.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Cylinder: number of cylinders in the engine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Liter: a more specific measure of engine size&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Doors: number of doors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Cruise: indicator variable representing whether the car has
+cruise control (1 = cruise)</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Sound: indicator variable representing whether the car has
+upgraded speakers (1 = upgraded)</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in"><span style="font-family:Symbol">·<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span>Leather: indicator variable representing whether the car has
+leather seats (1 = leather)</p>
+
+<p class="MsoNormal">Students are first asked to use simple linear regression to explore the intuitive relationship between miles traveled and retail price. The R-Sq value of this relationship is 2%, but after a closer look at the residuals, a transformation, and appropriate variable selection, students are able to develop a very strong multiple regression model. In addition, students learn that there isn’t always just one "best" model when conducting data analysis.</p>
+
+<p>Students work through this data set in a step-by step guided lab in groups of 2 or 3 as part of a final project in an introductory
+statistics course. While some of the work is done outside of class, about two class sessions in a computer lab should be planned for students to work through the lab and ask questions. This course has a calculus requirement and currently is using <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Chance2006">Chance and Rossman’s</a> workshop-style text<i> Investigating Statistical Concepts, Applications, and Methods</i>. Students have been introduced to simple linear regression and inference for simple linear regression before being introduced to this data set. After students walk through this guided lab, they are asked to conduct a multivariate regression analysis and create a research poster on a different data set in a completely different context as
+their final project. This data set is also used as a lab module in a second statistics course. The only prerequisite for this second statistics course is an AP style introductory course. </p>
+
+<h2>2. The Need for Multiple Regression: Regress Price on Mileage</h2>
+
+<p>Before developing a complex multiple regression model with several variables, students start with a quick review of the simple linear regression model by asking a question: "Are cars with lower mileage worth more?" Clearly it seems reasonable to expect to see a
+relationship between mileage (number of miles the car has been driven) and retail value.&nbsp; Hence students try fitting a simple linear regression model relating price with mileage, and obtain the following results:</p>
+
+<a name="Equation1"></a>
+<p style="text-indent:.25in"><b>Equation 1: Price = 24723 – 0.17 Mileage</b></p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.25in;
+margin-bottom:.0001pt">The t-statistic for the slope coefficient (b<sub>1</sub>):
+t = -4.09 (p-value &lt; 0.001)</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.25in;
+margin-bottom:.0001pt">R-Sq: 2.0%</p>
+
+<p>These results can lead to some nice review questions, such as:</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in">1)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>In general, what happens to price when there is one more mile on the car?</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in">2)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Does the fact that b<sub>1</sub> is small (-0.17) mean mileage is not very important? Students often misinterpret the magnitude of b<sub>1 </sub>as a measure of significance. Here students get a feeling of the importance of scale. For example, "How does the price change if two cars are identical except one has 60,000 more miles?" Students see that b<sub>1</sub> =
+-0.17 can be meaningful since mileage has so much variability.</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in">3)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Does mileage help you predict price? What does the p-value tell you?</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:.5in;
+margin-bottom:.0001pt;text-indent:-.25in">4)<span style="font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Does mileage help you predict price? What does the R-Sq value tell you?</p>
+
+<p>Traditional textbook examples usually have data that fit very nicely, with high R-sq and low p-values.&nbsp;For this
+example, however, many students feel the simultaneously small p-value and small R-Sq value send contradictory messages about the model. The p-value for b<sub>1</sub> indicates that mileage is an important variable, but the R-Sq value shows that
+the model does not account for much of the variation in retail prices. This also illustrates that it is always better to take a few minutes to visualize any data set instead of solely focusing on a p-value. The scatterplot in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure1">Figure 1</a> and R-Sq value suggest that including other explanatory variables in the regression model might help to better explain the variation in retail price.</p>
+ 
+
+<a name="Figure1"></a>
+<p><img src="./Journal of Statistics Education, v16n3_ Shonda Kuiper_files/kuiper_Figure1.gif" width="472" height="314">
+<br><b>Figure 1: Scatterplot of retail price and mileage.</b></p>
+
+<p>This plot also provides a nice starting point for discussing the importance of checking for outliers and influential observations. The scatterplot reveals a set of data points with retail prices higher then $52,000 that don’t seem to fall in the general cluster of
+data. Students identify these cars as all being Cadillac XLR-V8 (a hardtop convertible), clearly a car that tends to be more expensive than average. This is used as an example to show students that potential outliers should not automatically be eliminated
+from the data set.</p>
+
+<p>Also notice that the price of the 10 Cadillac XLR-V8 vehicles has a strong linear relationship with mileage (R-Sq = .99). The difference in R-Sq (99% here versus only 2% for the entire data) illustrates an important phenomenon: the strength of the relationship can be highly dependent on the set of cases, and whether they are homogeneous or heterogeneous, with respect to the predictor, and with respect to the other variables that are not part of the model. </p>
+
+<h2>3. Variable Selection Techniques</h2>
+
+<p>If the goal of &nbsp;developing a regression model is to describe or predict the retail price of a car, one of the primary issues is determining which variables to include in the model (and which to leave out). Clearly, all potential explanatory variables could be included, but that often results in a cumbersome model that is difficult to understand. On the other hand, a model that includes
+only one or two explanatory variables may provide substantially different predictions than the complex model. This tension between finding a simple model and finding a model that best explains the response is what makes it difficult to find a "best" model. This data set provides opportunities to discuss variable selection techniques to find models that provide a high R-Sq value while limiting the number of variables, such as <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Mallows1973">Mallows’ Cp</a>, the Akaike information criterion, or stepwise regression. </p>
+
+<p>For example, the best subsets technique in Minitab provides the output shown in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure2">Figure 2</a>. At this point in the lab dummy variables have not yet been discussed, thus the output is restricted to the quantitative and binary explanatory variables. This output
+included the following from Minitab:</p>
+
+<a name="Figure2"></a>
+
+<p class="MsoNormal" style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></p>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><br>
+
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; M y&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;L</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i l&nbsp;&nbsp;&nbsp;&nbsp; C&nbsp;&nbsp;
+e</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; l i L D r S
+a</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e n i o u o
+t</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a d t o i u
+h</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mallows&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; g e e r s n
+e</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Vars&nbsp; R-Sq&nbsp; R-Sq(adj)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; C-p&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; S&nbsp; e r r s e d
+r</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 1&nbsp; 32.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 32.3&nbsp;&nbsp;&nbsp; 172.0&nbsp; 8133.2&nbsp;&nbsp;&nbsp; X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 1&nbsp; 31.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 31.1&nbsp;&nbsp;&nbsp; 189.7&nbsp; 8207.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 2&nbsp; 38.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 38.2&nbsp;&nbsp;&nbsp;&nbsp; 87.6&nbsp; 7768.2&nbsp;&nbsp;&nbsp; X&nbsp;&nbsp;&nbsp;&nbsp; X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 2&nbsp; 36.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 36.6&nbsp;&nbsp;&nbsp; 110.4&nbsp; 7867.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; X&nbsp;&nbsp; X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 3&nbsp; 40.4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 40.2&nbsp;&nbsp;&nbsp;&nbsp; 61.0&nbsp; 7646.8&nbsp;&nbsp;&nbsp; X&nbsp;&nbsp;&nbsp;&nbsp; X&nbsp;&nbsp;
+X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 3&nbsp; 40.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 40.0&nbsp;&nbsp;&nbsp;&nbsp; 63.1&nbsp; 7655.9&nbsp; X X&nbsp;&nbsp;&nbsp;&nbsp; X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 4&nbsp; 42.3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 42.0&nbsp;&nbsp;&nbsp;&nbsp; 36.2&nbsp; 7530.6&nbsp; X X&nbsp;&nbsp;&nbsp;&nbsp; X&nbsp;&nbsp;
+X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 4&nbsp; 41.9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 41.6&nbsp;&nbsp;&nbsp;&nbsp; 41.0&nbsp; 7552.4&nbsp; X X&nbsp;&nbsp; X X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 5&nbsp; 43.7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 43.3&nbsp;&nbsp;&nbsp;&nbsp; 17.4&nbsp; 7440.5&nbsp; X X&nbsp;&nbsp; X X&nbsp;&nbsp;
+X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 5&nbsp; 43.0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 42.6&nbsp;&nbsp;&nbsp;&nbsp; 27.4&nbsp; 7486.1&nbsp; X X&nbsp;&nbsp;&nbsp;&nbsp; X X
+X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; <span style="background:yellow">6&nbsp; 44.6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+44.2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 6.8&nbsp; 7387.1&nbsp; X X&nbsp;&nbsp; X X X X</span></span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp; 6&nbsp; 43.8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 43.4&nbsp;&nbsp;&nbsp;&nbsp; 18.2&nbsp; 7439.5&nbsp; X X X X X&nbsp;&nbsp;
+X</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;</span><br>
+
+<b>Figure 2: Output from the best subsets technique in Minitab. Only the best two models for each number of
+variables (Vars.) are displayed.&nbsp;</b> <p></p>
+
+<p>The following definitions are taken directly from Minitab help:</p>
+
+<p style="margin-top:0in;margin-right:0in;margin-bottom:0in;margin-left:24.0pt;
+margin-bottom:.0001pt;text-indent:-12.0pt">·&nbsp;&nbsp; "Vars" lists the number of
+predictors in each model.</p>
+
+<p class="MsoNormal" style="margin-left:24.0pt;text-indent:-12.0pt">·&nbsp;&nbsp; R-Sq describes
+the proportion of variation in the response data explained by the predictors in
+the model. </p>
+
+<p class="MsoNormal" style="margin-left:24.0pt;text-indent:-12.0pt">·&nbsp;&nbsp; Adj. R-Sq
+is a modified version of R that has been adjusted for the number of predictors
+in the model.- similar to choosing model with smallest MSE</p>
+
+<p class="MsoNormal" style="margin-left:24.0pt;text-indent:-12.0pt">·&nbsp;&nbsp; <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Mallows1973">Mallows
+Cp</a> is a measure of the error in the best subset model, relative to the error
+incorporating all variables. Adequate models are those for which Cp is roughly
+equal to the number of parameters in the model (including the constant), and/or
+Cp is at a minimum.</p>
+
+<p class="MsoNormal" style="margin-left:24.0pt;text-indent:-12.0pt">·&nbsp;&nbsp; s is the
+standard deviation of the error term in the model </p>
+
+<p class="MsoNormal" style="margin-left:24.0pt;text-indent:-12.0pt">·&nbsp;&nbsp; Predictor
+columns, one for each predictor, are the last columns in the table. These
+columns indicate whether the corresponding predictor is included in the model.
+Predictors included in the model are marked with an X.</p>
+
+<p class="MsoNormal" style="margin-left:24.0pt">A good model should have high R
+and adjusted R, small s, and Cp close to the number of predictors contained in
+the model. </p>
+
+
+<p><a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Mallows1973">Mallows Cp</a> is used to compare
+models with a similar number of predictors (Vars). When using Mallows Cp to select a model with a specific number of predictors, a model should be chosen where Mallows Cp is as close as possible to the number of predictors (including the constant) in the model. Several texts [e.g. <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Draper1981">Draper and Smith (1981)</a>, <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Neter1985">Neter et. al., (1985)</a>, and <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Ramsey2002">Ramsey and Schefer (2002)</a>] and papers [e.g. <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Mallows1973">Mallows, (1973)</a>
+and <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Hocking1976">Hocking, (1976)</a>] discuss these techniques in more detail. In <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure2">Figure 2</a>, if a student wanted to select a model with six explanatory variables, the highlighted row has the best Cp and R-Sq values. This highlighted row corresponds to using Mileage, Cylinder, Doors, Cruise, Sound, and Leather as explanatory variables. The suggested best subsets regression equation is:</p>
+
+
+<a name="Equation2"></a>
+<p style="margin:0in;margin-bottom:.0001pt;text-indent:.25in"><b>Equation 2:
+Price = 7323 - 0.171 Mileage + 3200 Cylinder - 1463 Doors + 6206 Cruise - 2024 Sound + 3327 Leather</b></p>
+
+
+<p class="MsoNormal" style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Predictor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Coef&nbsp; SE Coef&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P</span><br>
+
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Constant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 7323&nbsp;&nbsp;&nbsp;&nbsp; 1771&nbsp;&nbsp; 4.14&nbsp; 0.000</span><br>
+
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Mileage&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -0.17052&nbsp; 0.03186&nbsp; -5.35&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Cyl&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3200.1&nbsp;&nbsp;&nbsp; 203.0&nbsp; 15.77&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Doors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;-1463.4&nbsp;&nbsp;&nbsp; 308.3&nbsp; -4.75&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Cruise Control&nbsp;&nbsp;&nbsp; 6205.5&nbsp;&nbsp;&nbsp; 651.5&nbsp;&nbsp; 9.53&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Premiun Sound&nbsp;&nbsp;&nbsp; -2024.4&nbsp;&nbsp;&nbsp; 570.7&nbsp; -3.55&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Leather&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3327.1&nbsp;&nbsp;&nbsp; 597.1&nbsp;&nbsp; 5.57&nbsp; 0.000</span><br>
+
+</class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></p><p class="MsoNormal" style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">S = 7387.11&nbsp;&nbsp; R-Sq = 44.6%&nbsp;&nbsp; R-Sq(adj) = 44.2%</span><br>
+
+</p><p class="MsoNormal" style="text-autospace:none">This model has a much better R-Sq
+value than Equation 1 and it appears that all the explanatory variables in this
+model are important. However, as the next sections show, simply using a
+variable selection technique does not guarantee a "best" regression model. </p>
+
+<h2>4. Goals of Multiple Regression</h2>
+
+<p>Often, examples in statistics courses describe iterative techniques to find the model that best describes relationships or best predicts a response variable. This data set can also demonstrate how multivariate regression models can be used to confirm theories. The most common goals of multiple regression are to:</p>
+
+<p>1) <u>Describe</u>: Develop a model to describe the relationship between the explanatory variables and the response variable.</p>
+
+<p>2) <u>Predict</u>: Use a set of sample data to make predictions. A regression model can be used to predict response values from explanatory variables within the range of our sample data.</p>
+
+<p>3) <u>Confirm</u>: Theories are often developed about individual variables, such as confirming which variables, or combination of variables, need to be included in the model. Regression can then be used to determine if the contribution of
+each explanatory variable in a model captures much of the variability in the response variable. </p>
+
+<p>The techniques used may depend upon the objectives of the analysis. The focus when using iterative variable selection techniques is not the significance of each explanatory variable, but how well the overall model fits. However, if the goal is to confirm a theory,
+other methods should be used. </p>
+
+<p>This data set provides an example of how an economist might use multiple regression analysis to formulate a
+focused hypothesis based on theory. This includes determining if the association between specific explanatory variables and the response could just be due to chance. For example, an economist may choose to test if mileage should be used to predict retail price or if cars with more cylinders cost more. Confirming a theory is similar to hypothesis testing. Iterative variable
+selection techniques test each variable, or combination of variables, several times and thus the p-values are not reliable. The stated significance level for a t-statistic is only valid if the data are used for a single test. If multiple tests are conducted to find the best equation, the p-value reported by software for each test for an individual component is invalid because numerous
+non-independent tests were done.</p>
+
+<p>Theories are also developed about the type of relationship that exists, such as "cars with lower mileage are worth more". In these situations, economists are testing whether the sign of the regression coefficient is consistent with their hypothesis. More
+specific theories, such as "retail price decreases linearly with mileage" can also be tested. In these situations, a hypothesis test is needed to determine if the regression coefficients are significant, thus the variables selected to be used in the regression equation should be based on theory. Often variables that would be considered as practically important in a model are inappropriately
+eliminated in these automated iterative techniques. While highly correlated predictors tend not to be included in a suggested model, multicollinearity is not specifically addressed in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Mallows1973">Mallows’ Cp</a>, Akaike’s information criterion, or stepwise regression. As discussed in the multicollinearity section, variables
+excluded from the suggested best subsets model, such as Liter, may still be highly correlated with the response variable. The out-of-print text by <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Mosteller1983">Mosteller, Fieinberg, and Rourke (1983)</a> provides a nice discussion of the aims of fitting regression models.</p>
+
+<h2>5. Exploring Patterns</h2>
+
+<p>Before <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Equation2">Equation 2</a> is considered
+acceptable, students are encouraged to check the model assumptions. While the Minitab output indicates each of these six predictors is significant, the residual plots shown in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure3">Figure 3</a> reveal that there clearly are still violations of the model assumptions. Thus the hypothesis tests should not be taken at face
+value.</p>
+
+<p><u>Normally Distributed Error Terms</u>: The histogram and normal probability plot of residuals show that the
+error terms are not normally distributed:&nbsp;in particular, there is a long upper tail, which corresponds to the outlying points visible in the regression plot in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure1">Figure 1</a>.</p>
+
+<p><u>Heteroskedasticity (non-constant variance):</u> The Residual vs. Fitted values plot shows some clustering and the variability of the residuals depends on the fitted value. There is more variability around the regression line when prices are higher.
+Consider a vertical slice of <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure1">Figure 1</a>, for example the rectangle formed to include all Y values when mileage ranges from 15000 to 16000 miles. Looking at the distribution of y-values within vertical slices does show a high degree of skewness. Often such skewed conditional distributions for Y|X suggest transforming
+to roots, logs, or reciprocals. Students can try suggested transformations of the data and then create similar residual plots for the transformed data. In this data set, the transformed variable, TPrice = log(price), is useful in addressing the violations of the model assumptions. </p> 
+
+<p class="MsoNormal" style="text-autospace:none">&nbsp;</p>
+<a name="Figure3"></a>
+<p class="MsoNormal" style="text-autospace:none"><img width="576" height="384" src="./Journal of Statistics Education, v16n3_ Shonda Kuiper_files/kuiper_Figure3.gif"><br>
+
+<b>Figure 3: Residual plots for Equation 2.</b></p>
+
+<p><u>Residuals versus order in the data:</u> <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure3">Figure 3</a> addresses another interesting aspect of this data set in the strong pattern in the ordered residuals even though there is no time variable (all data is based on 2005 GM cars). While sequence plots only make sense in model checking when there is a meaningful order to the data, the residual versus order plots in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure3">Figures 3</a> and <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure4">4</a> have been very helpful in getting students to
+perceive the need for including additional explanatory variables in the regression model. The residual versus order plot shown in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure4">Figure 4</a> helps emphasize the pattern arising due to the Make and Model of the cars being listed in alphabetical order. Cars with the same Make and Model tend to have similar retail prices. Even though indicator variables have not yet been discussed, students understand that including Make as an explanatory variable
+could greatly reduce the residual values. </p>
+
+<a name="Figure4"></a>
+<p><img width="456" height="305" src="./Journal of Statistics Education, v16n3_ Shonda Kuiper_files/kuiper_Figure4.gif"><br>
+<b>Figure 4: A residual versus order plot using Equation 1: &nbsp;Price = 24723 – 0.17 Mileage.</b> </p>
+
+<p>At this time, it should be clear that simply plugging data into a software package and using an iterative variable selection technique will not reliably create a "best" model. The following sections discuss techniques to address the model violations in order to create a better regression model.</p>
+
+<h2>6. Specially Constructed Explanatory Variables</h2>
+
+<p>The clusters in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure4">Figure 4</a> are easily identified from the listing of the data.&nbsp;The Make of these 2005 cars (Buick, Cadillac, Chevrolet, Pontiac, SAAB, and Saturn) are related to the
+price, and students see a need to incorporate categorical variables into their models.</p>
+
+<p>To incorporate categorical variables into a regression model, students have the opportunity to create dummy variables, also called indicator variables. Creating dummy variables is a process of mapping one column of categorical data into several columns of 0 and
+1 data. In this data set, dummy variables can be created for Make, Model, Trim and Type. Using the variable Make as an example, the six possible values (Buick, Cadillac, Chevrolet, Pontiac, SAAB, and Saturn) can be recoded using six dummy variables: one for each of the six Makes of car. For example, the dummy variable for Buick will have the value 1 for a car that is a Buick and 0 for any car that is not a Buick.</p> 
+
+<p>Recall that to include Make in its entirety into the model, we do not include all six dummy variables; five suffice. There is complete redundancy in the sixth dummy variable. In the following regression models, Saturn was arbitrarily left out of the model. The
+slope coefficient for a dummy variable is an estimate of the average amount (of the response variable) by which a "1" for that dummy variable will exceed the baseline value, which in this case is Saturn.</p>
+
+<h2>7. Multicollinearity</h2>
+
+<p>Many students may have already noticed that powerful sports cars have higher prices. In this data set there are two measures of engine size, the number of cylinders (Cylinder) and the displacement volume (Liter). There is a strong relationship between these two
+variables. Notice that <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Equation2">Equation 2</a> included Cylinder but did not include Liter. Students may have assumed that Liter simply was not useful in predicting price. The following exercise is beneficial in helping students understand the impacts of highly correlated explanatory variables.</p>
+
+<p>Three regression models are developed with this data set to predict retail price: (1) Mileage and Liter, (2) Mileage and Cylinder, and (3) Mileage, Liter and Cylinder. The R-Sq values for all three models are similar; however, Liter and Cylinder are both measures of engine size. The R-Sq values and the t-tests for the regression coefficients show that Liter is significant in predicting
+Retail Price in Model 1. Similarly Cylinder is significant in Model 2. However, Model 3 only shows Liter as significant. Students have the opportunity to see that a useful predictor of the response variable can sometimes fail to register as statistically significant. Students learn the importance of identifying the presence of multicollinearity and to recognize that the coefficients are
+unreliable when it exists.&nbsp; </p>
+
+<p>Students also learn that there is no "best" regression model. Often determining whether certain variables are included in a multivariate regression model depends on the goals of the study. If the coefficients are not being interpreted, highly correlated explanatory variables that both contribute to the model, such as Liter and Cylinder, could both be kept in the model. However,
+one of these redundant variables should be eliminated from the model if the goal is to confirm whether an explanatory variable is associated with a response (i.e. test a hypothesis). It is important to note that researchers using an iterative regression technique could have incorrectly concluded that Cylinder is not important in predicting retail price. In the following analysis, Cylinder will be eliminated from the data, since Cylinder and Liter are both measures of engine size, but Liter is more precise. </p>
+
+<p>Iterative techniques can be used to suggest the following model when using dummy variables for Make, TPrice =
+log(price), and eliminating Cylinder.</p>
+
+<a name="Equation3"></a>
+<p style="text-indent:.25in"><b>Equation 3: TPrice = 3.98 - 0.000003 Mileage + 0.0997 Liter + 0.0400 Buick + &nbsp;0.249Cadillac - 0.00937 Chev + 0.0136 Pontiac + 0.345 SAAB</b></p>
+
+
+<p class="MsoNormal" style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Predictor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Coef&nbsp;&nbsp;&nbsp;&nbsp; SE Coef&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; P</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Constant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.97991&nbsp;&nbsp;&nbsp;&nbsp; 0.00928&nbsp; 429.05&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Mileage&nbsp;&nbsp;&nbsp; -0.00000348&nbsp; 0.00000022&nbsp; -15.61&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Liter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.099725&nbsp;&nbsp;&nbsp; 0.002000&nbsp;&nbsp; 49.87&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Buick&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.039969&nbsp;&nbsp;&nbsp; 0.009200&nbsp;&nbsp;&nbsp; 4.34&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Cadillac&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.249303&nbsp;&nbsp;&nbsp; 0.009726&nbsp;&nbsp; 25.63&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Chev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -0.009372&nbsp;&nbsp;&nbsp; 0.007336&nbsp;&nbsp; -1.28&nbsp; 0.202</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+  font-family:&quot;Courier New&quot;">Pontiac</span><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.013613&nbsp;&nbsp;&nbsp; 0.008116&nbsp;&nbsp;&nbsp; 1.68&nbsp; 0.094</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">SAAB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.345305&nbsp;&nbsp;&nbsp; 0.008236&nbsp;&nbsp; 41.93&nbsp; 0.000</span><br>
+
+</class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></p><p class="MsoNormal" style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">S = 0.0515753&nbsp;&nbsp; R-Sq = 91.7%&nbsp;&nbsp; R-Sq(adj) = 91.6%</span></p>
+
+
+
+<p class="MsoNormal" style="text-autospace:none">This shows a clear improvement
+over <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Equation1">Equation 1</a> and <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Equation2">2</a>. The R-Sq is much better and the patterns in the
+corresponding residual plots shown in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure5">Figure 5</a> are much attenuated. </p>
+
+<a name="Figure5"></a>
+<p class="MsoNormal" style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;</span></p>
+
+<p class="MsoNormal" style="text-autospace:none"><img width="576" height="384" src="./Journal of Statistics Education, v16n3_ Shonda Kuiper_files/kuiper_Figure5.gif"><br>
+
+<b>Figure 5: Minitab plots of the residuals for the Equation 3: </b>TPrice = 3.98 - 0.000003 Mileage + 0.0997 Liter + 0.0400 Buick +
+0.249 Cadillac - 0.00937 Chev + 0.0136 Pontiac + 0.345 SAAB. The histogram and normal probability plot show that the error terms are not normally distributed. The plot of Residuals vs. Fitted values looks better but some clustering is still visible. The Residuals vs. Order plot also shows some systematic patterns, but they are much less pronounced than before.</p>
+<br>
+
+
+<p>Students are also encouraged to try other models by including additional variables in the model. Including the
+other variables in the data set will improve the R-Sq value somewhat. In addition, including the other variables will create a model that fits the regression assumptions. <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Equation4">Equation 4</a> using Make, Trim, Mileage, Liter, Doors, Cruise, Sound, and Leather would appear to be a reasonable model. Minitab output for this suggested model is given below. Note that Minitab and SPSS (though not shown here) will automatically eliminate one of the Trim dummy variables,
+Coup, because it was highly correlated with other explanatory variables.&nbsp;The corresponding regression equation is:</p>
+
+<a name="Equation4"></a>
+<p style="text-indent:.25in"><b>Equation 4: TPrice = 3.92 - 0.000004 Mileage + 0.0958 Liter + 0.0335 Doors + 0.00752 Cruise + 0.00522 Sound + 0.00626 Leather + 0.0417 Buick + 0.233 Cadillac - 0.0133 Chev - 0.00042 Pontiac + 0.281 SAAB + 0.138 Conv - 0.0890 Hatchback - 0.0711 Sedan</b></p>
+
+<p class="MsoNormal" style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Predictor&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Coef&nbsp;&nbsp;&nbsp;&nbsp; SE Coef&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; T&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+P</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Constant&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.91811&nbsp;&nbsp;&nbsp;&nbsp; 0.01231&nbsp; 318.26&nbsp; 0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Mileage&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -0.00000358&nbsp; 0.00000017&nbsp; -21.02&nbsp;
+0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Liter&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.095762&nbsp;&nbsp;&nbsp; 0.001721&nbsp;&nbsp; 55.64&nbsp;
+0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Doors&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.033527&nbsp;&nbsp;&nbsp; 0.003518&nbsp;&nbsp;&nbsp; 9.53&nbsp;
+0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Cruise&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.007517&nbsp;&nbsp;&nbsp; 0.004009&nbsp;&nbsp;&nbsp; 1.88&nbsp;
+0.061</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Sound&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.005223&nbsp;&nbsp;&nbsp; 0.003170&nbsp;&nbsp;&nbsp; 1.65&nbsp;
+0.100</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Leather&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.006260&nbsp;&nbsp;&nbsp; 0.003397&nbsp;&nbsp;&nbsp; 1.84&nbsp;
+0.066</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Buick&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.041653&nbsp;&nbsp;&nbsp; 0.007441&nbsp;&nbsp;&nbsp; 5.60&nbsp;
+0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Cadillac&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.233034&nbsp;&nbsp;&nbsp; 0.007944&nbsp;&nbsp; 29.33&nbsp;
+0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Chev&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -0.013315&nbsp;&nbsp;&nbsp; 0.005950&nbsp;&nbsp; -2.24&nbsp;
+0.026</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+  font-family:&quot;Courier New&quot;">Pontiac</span><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-0.000421&nbsp;&nbsp;&nbsp; 0.006519&nbsp;&nbsp; -0.06&nbsp; 0.949</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">SAAB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.281098&nbsp;&nbsp;&nbsp; 0.007481&nbsp;&nbsp; 37.58&nbsp;
+0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Conv&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0.137819&nbsp;&nbsp;&nbsp; 0.007306&nbsp;&nbsp; 18.86&nbsp;
+0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">Hatchback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -0.088989&nbsp;&nbsp;&nbsp; 0.008164&nbsp; -10.90&nbsp;
+0.000</span><br>
+
+<class=msonormal style="text-autospace:none"><span style="font-size:9.0pt;
+  font-family:&quot;Courier New&quot;">Sedan</span><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -0.071149&nbsp;&nbsp;&nbsp; 0.006019&nbsp; -11.82&nbsp; 0.000</span><br>
+
+</class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></p><p class="MsoNormal" style="text-autospace:none"><span style="font-size:9.0pt;
+font-family:&quot;Courier New&quot;">S = 0.0393651&nbsp;&nbsp; R-Sq = 95.2%&nbsp;&nbsp; R-Sq(adj) = 95.1%</span><br>
+
+</p><p>The R-Sq and R-Sq(adj) are slightly higher in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Equation4">Equation 4</a> and <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure6">Figure 6</a> below shows that the model
+assumptions appear to be satisfied. If iterative techniques were not used and the model assumptions hold, it would be reasonable to use hypothesis testing to conduct inference on each of the regression coefficients.</p>
+
+<p class="MsoNormal" style="text-autospace:none">&nbsp;</p>
+<a name="Figure6"></a>
+<p><img width="576" height="384" src="./Journal of Statistics Education, v16n3_ Shonda Kuiper_files/kuiper_Figure6.gif"><br>
+
+<b>Figure 6: Residual plots for Equation 4:</b> a multivariate regression model to predict TPrice with Make, Trim,
+Mileage, Liter, Doors, Cruise, Sound, and Leather as explanatory variables. The residuals appear to be homoskedastic and more closely follow a normal distribution. The Kolmogorov-Smirnov (K-S) test for normality resulted in a p-value = 0.13. The residual vs. order plot has much less clustering. Students may want to consider including Model as a predictor, but the corresponding set
+of dummy variables is very large, and adding them to the model doesn’t improve R-Sq.</p>
+<br>
+
+
+<h2>8. Interaction and Terms for Curvature</h2>
+
+<p>Students also have the opportunity to create quadratic and interaction terms in their regression model, such as Mileage*Liter, Liter*Liter, Mileage*Cylinder, and Cylinder*Cylinder. </p>
+
+<p>None of the quadratic or interaction terms noticeably improve the model described above. However, the benefits of a quadratic model can be demonstrated by comparing Price = bo + b1Cylinder and Price = bo + b1Cylinder + b2Cylinder^2.</p>
+
+<p>The line of outlying points identified in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Figure1">
+Figure 1</a> can provide an interesting demonstration of interaction terms. The fitted slope to predict price from mileage is -.48 for the 10 Cadillac LXR-V8s, much steeper than the -.17 found in <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Equation1">Equation 1</a> using the data set as a whole. This shows that depreciation for these high-end cars is almost 50 cents a mile, as opposed to 17 cents a mile when using the entire data set. Notice that <a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Equation4">Equation 4</a> shows that Cadillac, Liter and convertible are all in the final model. Each of these variables tends to represent high-end cars. This may motivate students to attempt to develop additional interaction terms that may create an even better model.</p>
+
+<h2>9. Conclusion</h2>
+
+<p>This data set provides a real economics example that is of interest to students and at the same time does not require deep knowledge of economic theory.&nbsp;We have used this data set as a guided introduction to multivariate regression that encourages students to try various models and demonstrate the importance of checking model assumptions. </p>
+
+<p>This guided lab activity encourages students to think like a statistician when working with advanced regression techniques. While this data set and lab were originally created to be used in a second statistics course, we have also used this lab as part of a final project for talented students in introductory statistics classes. This data set and lab are particularly helpful for students planning on conducting research in economics.</p>
+
+<p>This is one of several lab modules we are developing to emphasize the process of data analysis relevant for science and social science students. This helps students and future researchers in many fields to understand the conditions under which studies should be conducted and gives them the knowledge to discern when appropriate techniques should be used.</p>
+
+<h2>10. Availability</h2>
+
+<p>The data set, student lab handout with Minitab instructions, and instructors’ notes for this activity are
+available at <a href="http://web.grinnell.edu/individuals/kuipers/stat2labs/topics.html">http://web.grinnell.edu/individuals/kuipers/stat2labs/topics.html</a>.</p>
+
+<h2>11. Kelly Blue Book Data</h2>
+
+<p><a href="http://ww2.amstat.org/publications/jse/v16n3/datasets.kuiper.html#Kelly2005">Kelly Blue Book</a> has been a resource
+for accurate vehicle pricing for over 80 years. The website, <a href="http://www.kbb.com/">www.kbb.com</a>,
+is also a free on-line resource to calculate estimated retail price. According to Kelly Blue Book representatives, there is no single regression model or data base that is used to calculate their estimates. They have a very complex series of databases and models that are merged and weighted to determine price for various geographical regions.&nbsp; </p>
+<p></p><hr><p>
+</p><h2><center>Appendix A</center></h2>
+<h3>Data Description</h3>
+
+<p><b>NAME:</b> 2005 Car Data<br> 
+<b>TYPE:</b> Multiple Regression<br>
+<b>SIZE:</b> 810 observations, 12 variables</p>
+ 
+<p><b>DESCRIPTIVE ABSTRACT:</b><br>
+Data collected from Kelly Blue Book for several hundred 2005 used GM cars allows students to develop a multivariate regression model to determine their car value based on a variety of characteristics such as mileage, make, model, engine size, interior style, and cruise control. Students learn to look at residual plots and check for heteroskedasticity, autocorrelation, and multicollinearity.
+
+</p><p><b>SOURCES:</b><br> 
+
+For this data set, a representative sample of over eight hundred, 2005 GM cars were selected, then an algorithm was developed following the 2005 Central Edition of the Kelly Blue Book to estimate retail price. </p>
+
+<p><b>VARIABLE DESCRIPTIONS:</b><br>
+Price: suggested retail price of the used 2005 GM car in excellent condition. The condition of a car can greatly affect price. All cars in this data set were less than one year old when priced and considered to be in excellent condition. <br>
+Mileage: number of miles the car has been driven<br>
+Make: manufacturer of the car such as Saturn, Pontiac, and Chevrolet<br>
+Model: specific models for each car manufacturer such as Ion, Vibe, Cavalier<br>
+Trim (of car): specific type of car model such as SE Sedan 4D, Quad Coupe 2D<br>
+Type: body type such as sedan, coupe, etc.<br>
+Cylinder: number of cylinders in the engine	<br>
+Liter: a more specific measure of engine size	<br>
+Doors: number of doors	<br>
+Cruise: indicator variable representing whether the car has cruise control (1 = cruise)<br>
+Sound: indicator variable representing whether the car has upgraded speakers (1 = upgraded)<br>
+Leather: indicator variable representing whether the car has leather seats (1 = leather)<br>
+
+
+</p><p><b>Link to Data Set:</b> <a href="http://ww2.amstat.org/publications/jse/v16n3/kuiper.xls">http://ww2.amstat.org/publications/jse/v16n3/kuiper.xls</a></p>
+
+
+<p></p><hr><p></p>
+
+<h2>12. Acknowledgements</h2>
+
+<p>Partial support for this work was provided by the Course, Curriculum, and Laboratory Improvement program at the National Science
+Foundation under DUE 0510392. I would like to thank Tom Moore and Linda Collins for their contribution to this project. I also thank the editor and two anonymous reviewers for their many helpful suggestions.</p>
+
+<p></p><hr><p>
+
+</p><h2>References</h2>
+
+<a name="Chance2006"></a>
+<p>Chance, B., and Rossman, A., (2006), "Investigating Statistical Concepts, Applications, and Methods", Duxbury.</p>
+
+<a name="CUPM2004"></a>
+<p>CUPM Curriculum Guide (2004), a report by the Committee on the Undergraduate Program in Mathematics of The Mathematical Association of America. <a href="http://www.maa.org/cupm/cupm2004.pdf">http://www.maa.org/cupm/cupm2004.pdf</a></p>
+
+<a name="Draper1981"></a>
+<p>Draper, N.R. and Smith, H., (1981), "Applied Regression Analysis", Wiley.</p>
+
+<a name="Hocking1976"></a>
+<p>Hocking, R.R. (1976), "The Analysis and Selection of Variables in Linear Regression", <i>Biometrics</i>, 32, 1-50. </p>
+
+<a name="Kelly2005"></a>
+<p>Kelley Blue Book, (2005), Central Edition, <a href="http://www.kbb.com/">www.kbb.com</a> </p>
+
+<a name="Mallows1973"></a>
+<p>Mallows, C.L. (1973), "Some Comments on Cp", <i>Technometrics</i>, 15, 661-675. </p>
+
+<a name="Moore2000"></a>
+<p>Moore, T., Peck, R., and Rossman, A. (2000), "Calculus Reform and the First Two
+Years (CRAFTY)." <a href="http://www.maa.org/cupm/crafty/cf_project.html">http://www.maa.org/cupm/crafty/cf_project.html</a>&nbsp; </p>
+
+<a name="Mosteller1983"></a>
+<p>Mosteller, F., Fienberg, S., and Rourke, R. (1983), Beginning Statistics with Data Analysis, pp 302-307, Addison Wesley</p>
+
+<a name="Neter1985"></a>
+<p>Neter, J., Wasserman, W., and Kutner, M. (1985), Applied Linear Statistical Models, Homewood, Illinois: Irwin.</p>
+
+<a name="Ramsey2002"></a>
+<p>Ramsey, F.L. and Schafer, D.W., (2002), The Statistical Sleuth, Duxbury. </p>
+
+<p>Undergraduate Statistics Education Initiative (USEI), in 1999 a committee funded by ASA met to "Promote Undergraduate Statistics to Improve the Workforce of the Future".&nbsp;This initiative has led to multiple workshops and symposiums. <a href="http://ww2.amstat.org/education/index.cfm?fuseaction=usei">http://ww2.amstat.org/education/index.cfm?fuseaction=usei</a></p>
+
+<p>
+</p><hr>
+<p>
+</p><p>Shonda Kuiper<br>
+Grinnell College<br>
+Department of Mathematics and Statistics<br>
+1116 8th Ave<br>
+Grinnell, IA 50112</p>
+
+
+<p></p><hr><p></p>
+
+<small>
+<font face="Arial" color="#000000"> 
+<p align="CENTER">
+ <a href="http://ww2.amstat.org/publications/jse/contents_2008.html"><font color="green">Volume 16 (2008)</font></a> | 
+ <a href="http://ww2.amstat.org/publications/jse/jse_archive.html"><font color="green">Archive</font></a> | 
+ <a href="http://ww2.amstat.org/publications/jse/jse_index.html"><font color="green">Index</font></a> | 
+ <a href="http://ww2.amstat.org/publications/jse/jse_data_archive.html"><font color="green">Data Archive</font></a> |
+ <a href="http://ww2.amstat.org/publications/jse/jse_info_service.html"><font color="green">Resources</font></a> | 
+ <a href="http://ww2.amstat.org/publications/jse/jse_board.html"><font color="green">Editorial Board</font></a> | 
+ <a href="http://ww2.amstat.org/publications/jse/jse_author_info.html"><font color="green">Guidelines for Authors</font></a> | 
+ <a href="http://ww2.amstat.org/publications/jse/jse_data_contributor_info.html"><font color="green">Guidelines for Data Contributors</font></a> | 
+ <a href="http://ww2.amstat.org/publications/jse/.%20/"><font color="green">Home Page</font></a> |
+ <a href="mailto:journals@amstat.org"><font color="green">Contact JSE</font></a> | 
+ <a href="http://ww2.amstat.org/publications/"><font color="green">ASA Publications</font></a>
+</p> 
+</font> 
+</small>
+ 
+
+
+</class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></class=msonormal></body></html>

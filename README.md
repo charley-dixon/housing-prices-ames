@@ -1,0 +1,3 @@
+# Predicting Housing Prices in Ames, IA
+
+This was my first standalone project in General Assembly's Data Science Immersive.  Based on the classic Ames, IA housing dataset we were tasked with building a Multiple Linear Regression model to predict housing prices.  The dataset contains 79 unique housing features, from square footage to the type of exterior facade on a building and everything in between. I performed a strong exploratory data analysis and utilized foundational techniques such as train-test-splitting and cross-validation. In addition, I successfully implemented lasso and ridge regularization techniques to reduce the impact of unimportant features; helping the model to identify the "signal through the noise".

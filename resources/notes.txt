@@ -1,0 +1,32 @@
+=======OBJECTIVES=======
+
+You are tasked with creating a regression model based on the Ames Housing Dataset. This model will predict the price of a house at sale.
+
+We are hosting a competition on Kaggle to give you the opportunity to practice the following skills:
+	- Refining models over time
+	- Use of train-test split, cross-validation, and data with unknown values for the target to simulate the modeling process
+	- The use of Kaggle as a place to practice data science
+
+Remember:
+	- Multiple submissions are encouraged!
+	- LEADERBOARD STANDINGS ARE BASED ON ROOT MEAN SQUARED ERROR
+	- This is a PREDICTION model -> accuracy in prediction is more important than understanding what is "under the hood" (but don't diminish the importance of what is under the hood)
+	- The TARGET VALUE is the SALES PRICE (these sales have already occurred)
+
+
+=======THOUGHTS & OBSERVATIONS=======
+- "Market Value" of a home is whatever the market bares -> this may not - and probably will not - be the same as this predicts
+- Real Estate is local; using the "comparables" technique to estimating home values only works at the micro-scale (neighborhood & below)
+	- You can have two homes that are one street apart and they will be priced on completely different factors
+- We are predicting home values in Ames, IA; is there anything to know about Ames that will affect home values outside of what is in the data set?
+- CREATIVE FEATURE ENGINEERING: On this Kaggle challenge using the same data (https://www.kaggle.com/c/house-prices-advanced-regression-techniques), they describe this as a skill that can be practiced with this data set; albeit using random forest and gradient boosting models; which I don't know YET.
+- Wait, we don't know the 'Sale Prices', right?
+
+
+=======ADVICE=======
+- For first model, Decock recommends no "interaction variables", simply allowing "transformation" variables of existing features in the data set (logs, squares, square roots, etc.) when creating your first model to predict housing prices (for simplicity)
+- When dummying zip codes, remove columns that only have 5 or fewer houses; if we have few observations, the coefficient of our model would be "perfectly" predicting those observations; which is problematic as you might imagine
+
+=======PROCESS=======
+- I first read the paper titled "Alternative to the Boston Housing Data as an End of Semester Regression Project" by Dean De Cock; this gave me some background on how the data set was compiled.  In addition, I also got to read Dean's thoughts - and some of his own data exploration techniques - by reading the article.
+- I view data science as a "Technical Art", and while statistical understanding & programming knowledge are certainly two key factors, so is the ability to view data creatively.  What insights can I derive from this data?  If I do "this" or "that" to these variables, how will it affect the model?  My first instinct is to read primary sources on a data set that I receive (if possible) to understand it better.  If I can be inside the mind of someone even more directly connected to the data than I am as an observer, it allows me to interpret its results from both sides of the spectrum (as an observer/analyzer and a participant)
